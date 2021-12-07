@@ -12,7 +12,7 @@ export class GitpushServiceImpl implements GitpushService {
     async action(body:Object){
         if(body['hook_id'] != undefined){
             const exec = require('child_process').exec;
-            var script = exec('sh test.sh',
+            var script = exec('sh /build.sh',
                 (error, stdout, stderr) => {
                     console.log(`${stdout}`);
                     if (error !== null) {
