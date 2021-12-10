@@ -19,14 +19,17 @@ let GitpushController = class GitpushController {
     constructor(gitpushServiceImpl) {
         this.gitpushServiceImpl = gitpushServiceImpl;
     }
-    async createUser(body) {
-        console.log(body);
-        return await this.gitpushServiceImpl.action(body);
+    async createUser(headers) {
+        if (headers['x-github-event'] == 'push' &&
+            headers['x-github-hook-id'] == '332071966' &&
+            headers['x-github-hook-installation-target-id'] == '427273910') {
+            await this.gitpushServiceImpl.action();
+        }
     }
 };
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Headers)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)

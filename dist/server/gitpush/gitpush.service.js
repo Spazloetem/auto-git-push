@@ -10,16 +10,14 @@ exports.GitpushServiceImpl = exports.GITPUSH_SERVICE = void 0;
 const common_1 = require("@nestjs/common");
 exports.GITPUSH_SERVICE = Symbol('GITPUSH_SERVICE');
 let GitpushServiceImpl = class GitpushServiceImpl {
-    async action(body) {
-        if (body['hook_id'] != undefined) {
-            const exec = require('child_process').exec;
-            var script = exec('sh test.sh', (error, stdout, stderr) => {
-                console.log(`${stdout}`);
-                if (error !== null) {
-                    console.log(`exec error: ${error}`);
-                }
-            });
-        }
+    async action() {
+        const exec = require('child_process').exec;
+        var script = exec('sh /build.sh', (error, stdout, stderr) => {
+            console.log(`${stdout}`);
+            if (error !== null) {
+                console.log(`exec error: ${error}`);
+            }
+        });
     }
 };
 GitpushServiceImpl = __decorate([
