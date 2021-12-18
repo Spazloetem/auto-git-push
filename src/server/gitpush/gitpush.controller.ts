@@ -11,11 +11,15 @@ export class GitpushController {
     ) {}
 
     @Post()
-    async createUser(@Headers() headers){
+    async createGit(@Headers() headers){
         if(headers['x-github-event'] == 'push' && 
         headers['x-github-hook-id'] == '332071966' && 
         headers['x-github-hook-installation-target-id'] == '427273910'){
             await this.gitpushServiceImpl.action()
+        }else if(headers['x-github-event'] == 'push' && 
+        headers['x-github-hook-id'] == '333933040' && 
+        headers['x-github-hook-installation-target-id'] == '439628267'){
+            await this.gitpushServiceImpl.actionFront()
         }
     }
 

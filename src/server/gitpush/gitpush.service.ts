@@ -18,5 +18,15 @@ export class GitpushServiceImpl implements GitpushService {
             }
         });
     }
+    async actionFront(){
+        const exec = require('child_process').exec;
+        var script = exec('sh /buildfront.sh',
+            (error, stdout, stderr) => {
+                console.log(`${stdout}`);
+                if (error !== null) {
+                    console.log(`exec error: ${error}`);
+            }
+        });
+    }
 
 }
